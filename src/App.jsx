@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import Header from './components/Header'
 import NotificationList from './components/NotificationList'
+import Sidebar from './components/Sidebar'
 import rawNotifications from './data/notifications'
 
 function parseDate(dateStr) {
@@ -46,25 +47,28 @@ export default function App() {
   return (
     <div className="app">
       <Header />
-      <main className="main-content">
-        <NotificationList
-          notifications={paginated}
-          total={filtered.length}
-          page={page}
-          totalPages={totalPages}
-          goTo={goTo}
-          query={query}
-          setQuery={q => { setQuery(q); resetPage() }}
-          filterYear={filterYear}
-          setFilterYear={y => { setFilterYear(y); resetPage() }}
-          filterMonth={filterMonth}
-          setFilterMonth={m => { setFilterMonth(m); resetPage() }}
-          filterDay={filterDay}
-          setFilterDay={d => { setFilterDay(d); resetPage() }}
-          years={years}
-          pageSize={PAGE_SIZE}
-        />
-      </main>
+      <div className="page-body">
+        <main className="main-content">
+          <NotificationList
+            notifications={paginated}
+            total={filtered.length}
+            page={page}
+            totalPages={totalPages}
+            goTo={goTo}
+            query={query}
+            setQuery={q => { setQuery(q); resetPage() }}
+            filterYear={filterYear}
+            setFilterYear={y => { setFilterYear(y); resetPage() }}
+            filterMonth={filterMonth}
+            setFilterMonth={m => { setFilterMonth(m); resetPage() }}
+            filterDay={filterDay}
+            setFilterDay={d => { setFilterDay(d); resetPage() }}
+            years={years}
+            pageSize={PAGE_SIZE}
+          />
+        </main>
+        <Sidebar />
+      </div>
       <footer className="footer">
         <p>© KLS Gogte Institute of Technology — Examination Section</p>
       </footer>
